@@ -1,6 +1,10 @@
 package main
 
-import "github.com/json-iterator/go"
+import (
+	"fmt"
+	"github.com/json-iterator/go"
+)
+
 /**
  * Author : MicleFengzss@gmail.com
  * Time : 2019/12/23 上午10:36
@@ -14,9 +18,11 @@ type User struct {
 }
 
 func main() {
+	var json = jsoniter.ConfigCompatibleWithStandardLibrary
+
 	var (
-		json jsoniter.ConfigCompatibleWithStandardLibrary
 		user User
+		data []byte
 	)
 
 	user = User{
@@ -26,5 +32,6 @@ func main() {
 		Address: "tianan",
 	}
 
-	json.Marshal(&user)
+	data, _ = json.Marshal(&user)
+	fmt.Println(string(data))
 }
