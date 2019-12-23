@@ -1,7 +1,5 @@
 package main
 
-import "github.com/json-iterator/go"
-
 /**
  * Author : MicleFengzss@gmail.com
  * Time : 2019/12/23 上午10:36
@@ -21,9 +19,9 @@ func main() {
 	)
 
 	user = User{
-		Id: 1,
-		Name: "miclefengzss",
-		Age: 27,
+		Id:      1,
+		Name:    "miclefengzss",
+		Age:     27,
 		Address: "tianan",
 	}
 
