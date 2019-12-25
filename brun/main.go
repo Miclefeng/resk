@@ -20,4 +20,7 @@ func main() {
 
 	app := infra.New(conf)
 	app.Start()
+
+	c := make(chan int)
+	<-c
 }
