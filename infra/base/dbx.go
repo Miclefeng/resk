@@ -31,5 +31,5 @@ func (s *DbxDatabaseStarter) Setup(ctx infra.StarterContext) {
 		panic(err)
 	}
 
-	logrus.Debug("mysql.con url: ", settings.ShortDataSourceName())
+	logrus.Infof("mysql.con url: %s", settings.ShortDataSourceName())
 }
