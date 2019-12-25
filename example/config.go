@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/tietang/props/ini"
 	"github.com/tietang/props/kvs"
 )
@@ -12,5 +13,8 @@ import (
 
 func main() {
 	file := kvs.GetCurrentFilePath("config.ini", 1);
-	fmt.Printfln(file);
+	conf := ini.NewIniFileCompositeConfigSource(file)
+	port := conf.GetIntDefault("app.server.port", 18080)
+	fmt.Println(file);
+	fmt.Println(port);
 }
