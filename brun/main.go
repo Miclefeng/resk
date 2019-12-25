@@ -3,8 +3,8 @@ package brun
 import (
 	"github.com/tietang/props/ini"
 	"github.com/tietang/props/kvs"
-	_ "resk"
-	"resk/infra"
+	_ "miclefengzss/resk"
+	"miclefengzss/resk/infra"
 )
 
 /**

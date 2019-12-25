@@ -1,8 +1,8 @@
 package resk
 
 import (
-	"resk/infra"
-	"resk/infra/base"
+	"miclefengzss/resk/infra"
+	"miclefengzss/resk/infra/base"
 )
 
 /**
