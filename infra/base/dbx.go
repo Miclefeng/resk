@@ -30,6 +30,6 @@ func (s *DbxDatabaseStarter) Setup(ctx infra.StarterContext) {
 	if err != nil {
 		panic(err)
 	}
-
+	logrus.Infof("mysql.setting: %+v", settings)
 	logrus.Infof("mysql.con url: %s", settings.ShortDataSourceName())
 }
