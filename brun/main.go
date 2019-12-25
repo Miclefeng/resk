@@ -1,4 +1,4 @@
-package main
+package brun
 
 import (
 	"github.com/tietang/props/ini"
