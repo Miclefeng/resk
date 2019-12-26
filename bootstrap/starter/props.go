@@ -1,9 +1,9 @@
-package base
+package starter
 
 import (
 	"fmt"
 	"github.com/tietang/props/kvs"
-	"miclefengzss/resk/infra"
+	"miclefengzss/resk/bootstrap"
 )
 
 /**
@@ -14,14 +14,14 @@ import (
  var props kvs.ConfigSource
 
 type PropsStarter struct {
-	infra.BaseStarter
+	bootstrap.BaseStarter
 }
 
-func Props() (props kvs.ConfigSource) {
-	return
+func Props() kvs.ConfigSource {
+	return props
 }
 
-func (p *PropsStarter) Init(ctx infra.StarterContext) {
+func (p *PropsStarter) Init(ctx bootstrap.StarterContext) {
 	props = ctx.Props()
 	fmt.Println("初始化配置。")
 }

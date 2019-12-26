@@ -4,7 +4,7 @@ import (
 	"github.com/tietang/props/ini"
 	"github.com/tietang/props/kvs"
 	_ "miclefengzss/resk"
-	"miclefengzss/resk/infra"
+	"miclefengzss/resk/bootstrap"
 )
 
 /**
@@ -14,13 +14,10 @@ import (
 
 func main() {
 	// 获取程序运行文件所在的路径
-	file := kvs.GetCurrentFilePath("config.ini", 1)
+	file := kvs.GetCurrentFilePath("../config/config.ini", 1)
 	// 加载和解析配置文件
 	conf := ini.NewIniFileConfigSource(file)
 
-	app := infra.New(conf)
+	app := bootstrap.New(conf)
 	app.Start()
-
-	c := make(chan int)
-	<-c
 }

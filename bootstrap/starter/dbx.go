@@ -1,11 +1,12 @@
-package base
+package starter
 
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/sirupsen/logrus"
 	"github.com/tietang/dbx"
 	"github.com/tietang/props/kvs"
-	"miclefengzss/resk/infra"
+	"miclefengzss/resk/bootstrap"
+	"time"
 )
 
 /**
@@ -20,16 +21,24 @@ func DbxDatabase() *dbx.Database {
 }
 
 type DbxDatabaseStarter struct {
-	infra.BaseStarter
+	bootstrap.BaseStarter
 }
 
-func (s *DbxDatabaseStarter) Setup(ctx infra.StarterContext) {
+func (s *DbxDatabaseStarter) Setup(ctx bootstrap.StarterContext) {
 	conf := ctx.Props()
 	settings := dbx.Settings{}
 	err := kvs.Unmarshal(conf, &settings, "mysql")
 	if err != nil {
 		panic(err)
 	}
-	logrus.Infof("mysql.setting: %+v", settings)
+	settings.ConnMaxLifetime = conf.GetDurationDefault("mysql.connMaxLifetime", 8*time.Hour)
+	settings.Options = map[string]string{
+		"charset": conf.GetDefault("mysql.charset", "utf8mb4"),
+		"parseTime": conf.GetDefault("mysql.parseTime", "true")}
 	logrus.Infof("mysql.con url: %s", settings.ShortDataSourceName())
+	database, err = dbx.Open(settings)
+	if err != nil {
+		panic(err)
+	}
+	logrus.Info("mysql.ping: ", database.Ping())
 }

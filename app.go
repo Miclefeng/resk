@@ -1,8 +1,8 @@
 package resk
 
 import (
-	"miclefengzss/resk/infra"
-	"miclefengzss/resk/infra/base"
+	"miclefengzss/resk/bootstrap"
+	"miclefengzss/resk/bootstrap/starter"
 )
 
 /**
@@ -11,6 +11,6 @@ import (
  */
 
 func init() {
-	infra.Register(&base.PropsStarter{})
-	infra.Register(&base.DbxDatabaseStarter{})
+	bootstrap.Register(&starter.PropsStarter{})
+	bootstrap.Register(&starter.DbxDatabaseStarter{})
 }

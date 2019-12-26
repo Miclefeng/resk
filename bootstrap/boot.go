@@ -1,4 +1,4 @@
-package infra
+package bootstrap
 
 import "github.com/tietang/props/kvs"
 
