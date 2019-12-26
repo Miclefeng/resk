@@ -5,7 +5,7 @@ import (
 	"github.com/go-playground/universal-translator"
 	"github.com/go-playground/locales/zh"
 	"gopkg.in/go-playground/validator.v9"
-	"gopkg.in/go-playground/validator.v9/translations/zh"
+	vtzh "gopkg.in/go-playground/validator.v9/translations/zh"
 )
 
 /**
@@ -32,6 +32,15 @@ func main() {
 
 	cn := zh.New()
 	uni := ut.New(cn, cn)
+	translator, found := uni.GetTranslator("zh")
+	if found {
+		err := vtzh.RegisterDefaultTranslations(validate, translator)
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else {
+		fmt.Println("not found")
+	}
 
 	err := validate.Struct(user)
 	if err != nil {
@@ -41,7 +50,9 @@ func main() {
 		}
 		errors, ok := err.(validator.ValidationErrors)
 		if ok {
-			fmt.Println(errors)
+			for _, err := range errors {
+				fmt.Println(err.Translate(translator))
+			}
 		}
 	}
 }

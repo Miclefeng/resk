@@ -12,5 +12,6 @@ import (
 
 func init() {
 	bootstrap.Register(&starter.PropsStarter{})
+	bootstrap.Register(&starter.ValidatorStarter{})
 	bootstrap.Register(&starter.DbxDatabaseStarter{})
 }

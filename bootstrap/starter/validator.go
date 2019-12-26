@@ -1,10 +1,11 @@
 package starter
 
 import (
-	"github.com/go-playground/universal-translator"
 	"github.com/go-playground/locales/zh"
+	"github.com/go-playground/universal-translator"
+	"github.com/sirupsen/logrus"
 	"gopkg.in/go-playground/validator.v9"
-	"gopkg.in/go-playground/validator.v9/translations/zh"
+	vtzh "gopkg.in/go-playground/validator.v9/translations/zh"
 	"miclefengzss/resk/bootstrap"
 )
 
@@ -26,13 +27,22 @@ func Translate() ut.Translator {
 	return translator
 }
 
-type ValidateStarter struct {
+type ValidatorStarter struct {
 	bootstrap.BaseStarter
 }
 
-func (v *ValidateStarter) Init(ctx bootstrap.Starter) {
+func (v *ValidatorStarter) Init(ctx bootstrap.StarterContext) {
 	validate = validator.New()
 	cn := zh.New()
-	translator := ut.New(cn, cn)
-
+	uni := ut.New(cn, cn)
+	var found bool
+	translator, found = uni.GetTranslator("zh")
+	if found {
+		err := vtzh.RegisterDefaultTranslations(validate, translator)
+		if err != nil {
+			logrus.Error(err)
+		}
+	} else {
+		logrus.Error("Not found: translator zh")
+	}
 }
