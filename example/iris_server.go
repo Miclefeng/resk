@@ -7,5 +7,5 @@ import "github.com/kataras/iris"
  */
 
 func main()  {
-	server := iris.New()
+	server := iris.Default()
 }
