@@ -21,7 +21,7 @@ func init() {
 	stdFormatter := &prefixed.TextFormatter{
 		FullTimestamp:   true,
 		ForceFormatting: true,
-		TimestampFormat: "2006-01-02.15:04:05.000000",
+		TimestampFormat: "2006-01-02 15:04:05.000000",
 	}
 
 	stdFormatter.ForceColors = true
@@ -59,11 +59,8 @@ func init() {
 	}, &prefixed.TextFormatter{
 		FullTimestamp:   true,
 		ForceFormatting: true,
-		TimestampFormat: "2006-01-02.15:04:05.000000",
+		TimestampFormat: "2006-01-02 15:04:05.000000",
 		DisableColors:   true,
 	})
 	logrus.AddHook(lfHook)
-
-	logrus.Debug("testing")
-
 }

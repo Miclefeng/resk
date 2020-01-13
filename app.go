@@ -14,4 +14,5 @@ func init() {
 	bootstrap.Register(&starter.PropsStarter{})
 	bootstrap.Register(&starter.ValidatorStarter{})
 	bootstrap.Register(&starter.DbxDatabaseStarter{})
+	bootstrap.Register(&starter.IrisStarter{})
 }
